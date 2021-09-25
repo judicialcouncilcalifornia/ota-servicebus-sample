@@ -39,6 +39,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 
 | Name | Type | Description |
 | :--- | :---: | :--- |
+| `requestId` | String | Unique identifier for the request |
 | `caseNumber` | String | Case Number |
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
@@ -89,6 +90,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 
 | Name | Type | Description |
 | :--- | :---: | :--- |
+| `requestId` | String | Unique identifier for the request |
 | `caseNumber` | String | Case Number |
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
@@ -100,6 +102,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 #### Sample Message:
 ```json
 {
+    "requestId" : "614e7eff8d5502c2f0d6336e",
     "caseNumber": "INF-19-C19037936",
     "citationNumber": "C19037936",
     "county": "San Francisco",
@@ -114,6 +117,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 
 | Name | Type | Description |
 | :--- | :---: | :--- |
+| `requestId` | String | Unique identifier for the request |
 | `caseNumber` | String | Case Number |
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
@@ -148,6 +152,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 #### Sample Message:
 ```json
 {
+    "requestId" : "614e7eff8d5502c2f0d6336e",
     "caseNumber": "INF-19-C19037936",
     "citationNumber": "C19037936",
     "county": "San Francisco",
@@ -185,6 +190,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 
 | Name | Type | Description |
 | :--- | :---: | :--- |
+| `requestId` | String | Unique identifier for the request |
 | `caseNumber` | String | Case Number |
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
@@ -200,6 +206,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 #### Sample Message:
 ```json
 {
+    "requestId" : "614e7eff8d5502c2f0d6336e",
     "caseNumber": "INF-19-C19037936",
     "citationNumber": "C19037936",
     "county": "San Francisco",
@@ -231,6 +238,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 #### Sample Message:
 ```json
 {
+    "requestId" : "614e7eff8d5502c2f0d6336e",
     "caseNumber": "INF-19-C19037936",
     "citationNumber": "C19037936",
     "county": "San Francisco",
