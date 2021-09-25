@@ -254,7 +254,6 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Vacated`" |
 | `petitioner` | String | Petitioner |
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
-| `judgment` | String | Judgment<br>Valid value are<ul><li>"`Approved`"</li><li>"`Rejected`"</li></ul> |
 | `vacatedBy` | String | Vacated By |
 | `vacatedDate` | DateTime | Date the Order was vacated |
 | `vacatedReason` | String | Reason for vacating the order |
@@ -269,7 +268,6 @@ The following actions in the ATP tool will trigger the Case Action message:
     "triggerAction": "Vacated",
     "petitioner": "John Doe",
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
-    "judgment": "Submitted",
     "vacatedBy": "John Doe",
     "vacatedDate": "2019-01-01T03:59:15.561Z",
     "vacatedReason": "Correction in case needed"
