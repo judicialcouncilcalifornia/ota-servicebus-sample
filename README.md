@@ -27,11 +27,11 @@ You will need to replace configuration settings provided to you by the JCC Proje
 ### Trigger Actions
 
 The following actions in the ATP tool will trigger the Case Action message:
-- Petition is submitted by the Defendant
-- Petition is approved by Judicial Officer
-- Petition is denied by Judicial Officer
-- Order is served by the Court Clerk
-- Order is vacated by the Court Administrator
+- [Petition is submitted by the Defendant](#petition-is-submitted-by-the-defendant)
+- [Petition is approved by Judicial Officer](#petition-is-approved-by-judicial-officer)
+- [Petition is denied by Judicial Officer](#petition-is-denied-by-judicial-officer)
+- [Order is served by the Court Clerk](#order-is-served-by-the-court-clerk)
+- [Order is vacated by the Court Administrator](#order-is-vacated-by-the-court-administrator)
 
 ### The schema for the ATP Case Action message (Topic)
 
@@ -224,7 +224,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 }
 ```
 
-### Order is served by the Clerk
+### Order is served by the Court Clerk
 
 | Name | Type | Description |
 | :--- | :---: | :--- |
