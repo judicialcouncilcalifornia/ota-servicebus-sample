@@ -111,7 +111,7 @@ The following actions in the ATP tool will trigger the Case Action message:
     "triggerAction": "Submitted",
     "petitioner": "John Doe",
     "petitionerPhoneNumber": "(213) 555-1212",
-    "petitionerPhoneNumber": "john.doe@johndoe.com",
+    "petitionerEmail": "john.doe@johndoe.com",
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z"
 }
 ```
