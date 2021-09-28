@@ -46,6 +46,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `triggerAction` | String | Action that triggered the message.<br>Valid values are:<ul><li>"`Submitted`"</li><li>"`Approved`"</li><li>"`Rejected`"</li><li>"`Order Served`"</li><li>"`Vacated`"</li></ul> |
 | `petitioner` | String | Petitioner |
 | `petitionerPhoneNumber` | String | Petitioner’s phone number |
+| `petitionerEmail` | String | Petitioner’s email address |
 | `petitionSubmittedOn` | DatTime | Date the petition was submitted on |
 | `judgment` | String | Judgment<br>Valid values are:<ul><li>"`Approved`"</li><li>"`Rejected`"</li></ul> |
 | `judgmentBy` | String | Judgment By |
@@ -97,6 +98,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Submitted`" |
 | `petitioner` | String | Petitioner |
 | `petitionerPhoneNumber` | String | Petitioner’s phone number |
+| `petitionerEmail` | String | Petitioner’s email address |
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
 
 #### Sample Message:
@@ -108,7 +110,8 @@ The following actions in the ATP tool will trigger the Case Action message:
     "county": "San Francisco",
     "triggerAction": "Submitted",
     "petitioner": "John Doe",
-    "petitionerPhoneNumber": null,
+    "petitionerPhoneNumber": "(213) 555-1212",
+    "petitionerPhoneNumber": "john.doe@johndoe.com",
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z"
 }
 ```
