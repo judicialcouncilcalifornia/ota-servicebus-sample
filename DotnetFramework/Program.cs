@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Azure.ServiceBus.Management;
 
 namespace ReadFromTopicSubscription
 {
@@ -62,6 +63,8 @@ namespace ReadFromTopicSubscription
 
             // create a subscription client to read messages from the subscription
             SubscriptionClient sc = new SubscriptionClient(new Uri($"sb://{serviceBusNamespace}/").ToString(), topicName, subscriptionName, aadTokenProvider);
+
+            sc.PrefetchCount = 10;
 
             // receive the messages from the subscription
             await ReceiveAsync(sc);

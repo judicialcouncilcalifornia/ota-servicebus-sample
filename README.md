@@ -10,7 +10,7 @@ standard electronic interface/API.
 We have some sample projects to get you started in these formats:
 * [Dotnet Framework 4.7.2](DotnetFramework/README.md)
 * [Dotnet Core 3.1](DotnetCore/README.md)
-* [Dotnet 5](Dotnet5/README.md)
+* [Dotnet 6](Dotnet6/README.md)
 
 ### Configuration Settings
 You will need to replace configuration settings provided to you by the JCC Project Manager:
