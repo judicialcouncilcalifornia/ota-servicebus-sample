@@ -22,7 +22,6 @@ namespace ReadFromTopicSubscription
             NameValueCollection appSettings = ConfigurationManager.AppSettings;
             string clientSecret = appSettings["ClientSecret"] ?? string.Empty;
             string clientId = appSettings["ClientId"] ?? string.Empty;
-            string serviceBusAudience = appSettings["ServiceBusAudience"] ?? string.Empty;
             string serviceBusNamespace = appSettings["ServiceBusNamespace"] ?? string.Empty;
             string subscriptionName = appSettings["SubscriptionName"] ?? string.Empty;
             string tenantId = appSettings["TenantId"] ?? string.Empty;
@@ -30,7 +29,6 @@ namespace ReadFromTopicSubscription
 
             if (string.IsNullOrEmpty(clientSecret)
                 || string.IsNullOrEmpty(clientId)
-                || string.IsNullOrEmpty(serviceBusAudience)
                 || string.IsNullOrEmpty(serviceBusNamespace)
                 || string.IsNullOrEmpty(subscriptionName)
                 || string.IsNullOrEmpty(tenantId)
@@ -43,11 +41,13 @@ namespace ReadFromTopicSubscription
             Program P = new Program();
 
             // authenticate the application and authorize access to the service bus entity to read the messages
-            await P.ClientCredentialsScenario(clientSecret, clientId, serviceBusAudience, serviceBusNamespace, subscriptionName, tenantId, topicName);
+            await P.ClientCredentialsScenario(clientSecret, clientId, serviceBusNamespace, subscriptionName, tenantId, topicName);
         }
 
-        private async Task ClientCredentialsScenario(string clientSecret, string clientId, string serviceBusAudience, string serviceBusNamespace, string subscriptionName, string tenantId, string topicName)
+        private async Task ClientCredentialsScenario(string clientSecret, string clientId, string serviceBusNamespace, string subscriptionName, string tenantId, string topicName)
         {
+            const string serviceBusAudience = "https://servicebus.azure.net/.default";
+
             // get the OAuth 2.0 token
             TokenProvider aadTokenProvider = TokenProvider.CreateAzureActiveDirectoryTokenProvider(async (audience, authority, state) =>
             {
@@ -62,12 +62,10 @@ namespace ReadFromTopicSubscription
             }, $"https://login.windows.net/{tenantId}");
 
             // create a subscription client to read messages from the subscription
-            SubscriptionClient sc = new SubscriptionClient(new Uri($"sb://{serviceBusNamespace}/").ToString(), topicName, subscriptionName, aadTokenProvider);
-
-            sc.PrefetchCount = 10;
+            SubscriptionClient sc = new SubscriptionClient(new Uri($"sb://{serviceBusNamespace}/").ToString(), topicName, subscriptionName, aadTokenProvider) { PrefetchCount = 10 };
 
             // receive the messages from the subscription
-            await ReceiveAsync(sc);
+            await this.ReceiveAsync(sc);
         }
 
         private static Task ExceptionReceivedHandler(ExceptionReceivedEventArgs exceptionReceivedEventArgs)
@@ -87,7 +85,7 @@ namespace ReadFromTopicSubscription
                     AutoComplete = false
                 };
 
-                this.receiveClient.RegisterMessageHandler(ReceiveMessagesAsync, messageHandlerOptions);
+                this.receiveClient.RegisterMessageHandler(this.ReceiveMessagesAsync, messageHandlerOptions);
             }
             catch (Exception ex)
             {
@@ -95,7 +93,8 @@ namespace ReadFromTopicSubscription
             }
             finally
             {
-                Console.ReadKey();
+                Console.WriteLine("All done. Push [Enter] to exit.");
+                Console.ReadLine();
                 this.receiveClient.CloseAsync();
             }
         }
