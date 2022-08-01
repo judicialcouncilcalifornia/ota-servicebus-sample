@@ -1,7 +1,8 @@
 export class ServiceBusInfo {
-    public TenantId: string = '<YOUR_TENANT_ID>';
-    public ClientId: string = '<YOUR_CLIENT_ID>';
-    public ClientSecret: string = '<YOUR_CLIENT_SECRET>';
-    public Endpoint: string = '<SERVICE_BUS_ENDPOINT>';
-    public QueueName: string = '<QUEUE_NAME>';
+    public TenantId: string = '<TENANT_ID>';
+    public ClientId: string = '<CLIENT_ID>';
+    public ClientSecret: string = '<CLIENT_SECRET>';
+    public Namespace: string = '<SERVICE_BUS_NAMESPACE>.servicebus.windows.net';
+    public TopicName: string = '<SERVICE_BUS_TOPIC_NAME>';
+    public SubscriptionName: string = '<SERVICE_BUS_SUPSCRIPTION_NAME>';
 }
