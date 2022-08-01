@@ -32,8 +32,8 @@ const serviceBusReceiverOptions: ServiceBusReceiverOptions = {
 
 export async function main() {
     const credential = new ClientSecretCredential(serviceBusInfo.TenantId, serviceBusInfo.ClientId, serviceBusInfo.ClientSecret);
-    const sbClient = new ServiceBusClient(serviceBusInfo.Endpoint, credential);
-    const receiver = sbClient.createReceiver(serviceBusInfo.TopicName, serviceBusInfo.QueueName, serviceBusReceiverOptions);
+    const sbClient = new ServiceBusClient(serviceBusInfo.Namespace, credential);
+    const receiver = sbClient.createReceiver(serviceBusInfo.TopicName, serviceBusInfo.SubscriptionName, serviceBusReceiverOptions);
 
     try {
         const subscription = receiver.subscribe({
