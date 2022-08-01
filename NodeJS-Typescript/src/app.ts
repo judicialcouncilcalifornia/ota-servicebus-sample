@@ -22,6 +22,12 @@ const serviceBusReceiverOptions: ServiceBusReceiverOptions = {
     */
     receiveMode: "peekLock",
     //receiveMode: "receiveAndDelete",
+    
+    /**
+     * Option to disable the client from running JSON.parse() on the message body when receiving the message.
+    */
+    skipParsingBodyAsJson: true,
+    // skipParsingBodyAsJson: false,
 
     /***
      * You can choose to read the sub queue "deadLetter"
