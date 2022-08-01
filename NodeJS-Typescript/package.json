@@ -4,11 +4,13 @@
   "description": "OTA Two-way Service Bus Sample",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Glen Souza",
+  "dependencies": {
+    "@azure/service-bus": "7.6.0",
+    "@azure/identity": "2.1.0"
+  },
   "devDependencies": {
     "tslint": "^6.1.3",
     "typescript": "^4.7.4"
