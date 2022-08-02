@@ -37,7 +37,7 @@ this.TopicName = '<SERVICE_BUS_TOPIC_NAME>';
 this.SubscriptionName = '<SERVICE_BUS_SUBSCRIPTION_NAME>';
 ```
 
-Then in the `app.ts` file, update the `subscribeOptions` and the `serviceBusReceiverOptions` variables as needed:
+Then in the `app.js` file, update the `subscribeOptions` and the `serviceBusReceiverOptions` variables as needed:
 ```javacript
 const subscribeOptions = {
     /* After executing a callback, the receiver will remove the message from the queue */
