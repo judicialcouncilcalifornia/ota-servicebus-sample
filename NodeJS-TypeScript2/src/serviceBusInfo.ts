@@ -4,5 +4,5 @@ export class ServiceBusInfo {
     public ClientSecret: string = '<CLIENT_SECRET>';
     public Namespace: string = '<SERVICE_BUS_NAMESPACE>.servicebus.windows.net';
     public TopicName: string = '<SERVICE_BUS_TOPIC_NAME>';
-    public SubscriptionName: string = '<SERVICE_BUS_SUPSCRIPTION_NAME>';
+    public SubscriptionName: string = '<SERVICE_BUS_SUBSCRIPTION_NAME>';
 }

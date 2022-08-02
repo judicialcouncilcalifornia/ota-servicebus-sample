@@ -1,0 +1,10 @@
+{
+  "name": "ota-servicebus-sample_nodejs-javascript",
+  "version": "1.0.0",
+  "description": "OTA Two-way Service Bus Sample",
+  "author": "Glen Souza",
+  "dependencies": {
+    "@azure/identity": "2.1.0",
+    "@azure/service-bus": "7.6.0"
+  }
+}
