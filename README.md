@@ -11,11 +11,13 @@ We have some sample projects to get you started in these formats:
 * [Dotnet Framework 4.7.2](DotnetFramework/README.md)
 * [Dotnet Core 3.1](DotnetCore/README.md)
 * [Dotnet 6](Dotnet6/README.md)
+* [Dotnet 7](Dotnet7/README.md)
 * [NodeJS with JavaScript](NodeJS-JavaScript/README.md)
 * [NodeJS with TypeScript](NodeJS-TypeScript/README.md)
 
 ### Configuration Settings
-You will need to replace configuration settings provided to you by the JCC Project Manager:
+You will need to replace configuration settings provided to you by the JCC Project Manager.
+If you connect to a Topic:
 * TenantId
 * ClientId
 * ClientSecret
@@ -23,6 +25,11 @@ You will need to replace configuration settings provided to you by the JCC Proje
 * TopicName
 * SubscriptionName
 
+If you connect to a Queue:
+* ServiceBusNamespace
+* QueueName
+* SharedAccessKey
+* SharedAccessKeyName
 ---
 ## Case Action
 
@@ -47,9 +54,16 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `county` | String | County |
 | `triggerAction` | String | Action that triggered the message.<br>Valid values are:<ul><li>"`Submitted`"</li><li>"`Approved`"</li><li>"`Rejected`"</li><li>"`Order Served`"</li><li>"`Vacated`"</li></ul> |
 | `petitioner` | String | Petitioner |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
 | `petitionerPhoneNumber` | String | Petitioner’s phone number |
 | `petitionerEmail` | String | Petitioner’s email address |
 | `petitionSubmittedOn` | DatTime | Date the petition was submitted on |
+| `isCommunityService` | Boolean | Indicates whether Community Service option is selected by the defendant during petition submission |
+| `isMoreTimeToPay` | Boolean | Indicates whether More Time To Pay option is selected by the defendant during petition submission |
+| `isPaymentPlan` | Boolean | Indicates whether Payment Plan option is selected by the defendant during petition submission |
+| `isReductionOfPayment` | Boolean | Indicates whether Reduction of Fines option is selected by the defendant during petition submission |
+| `petitionSubmission` | Based64 | Defendant submission base64 file |
 | `judgment` | String | Judgment<br>Valid values are:<ul><li>"`Approved`"</li><li>"`Rejected`"</li></ul> |
 | `judgmentBy` | String | Judgment By |
 | `judgmentByRole` | String | Judgment By Role<br>Valid values are:<ul><li>"`Court Clerk`"</li><li>"`Judicial Officer`"</li></ul> |
@@ -59,6 +73,9 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `reducedAmountAccept` | Boolean | Indicates whether Reduction of Fines is accepted |
 | `reducedAmountDeny` | Boolean | Indicates whether Reduction of Fines is denied |
 | `finalReducedAmount` | Number | Final Reduced Amount |
+| `amountOfReduction` | Double | Amount of Reduction |
+| `expressFindingsComments` | String | Express Findings made when the calculated/recommended amount in increased by the judicial officer |
+| `additionalComments` | String | Additional Comments |
 | `paymentPlanAccept` | Boolean | Indicates whether Payment Plan is accepted |
 | `paymentPlanDeny` | Boolean | Indicates whether Payment Plan is denied |
 | `finalMonthlyPaymentAmount` | Number | Final Monthly Payment Amount |
@@ -99,9 +116,17 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `county` | String | County |
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Submitted`" |
 | `petitioner` | String | Petitioner |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
 | `petitionerPhoneNumber` | String | Petitioner’s phone number |
 | `petitionerEmail` | String | Petitioner’s email address |
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
+| `plea` | String | Indicates what plea the Defendant took<br>Valid values are:<ul><li>"`Guilty`"</li><li>"`No Contest`"</li></ul> |
+| `isCommunityService` | Boolean | Indicates whether Community Service option is selected by the defendant during petition submission |
+| `isMoreTimeToPay` | Boolean | Indicates whether More Time To Pay option is selected by the defendant during petition submission |
+| `isPaymentPlan` | Boolean | Indicates whether Payment Plan option is selected by the defendant during petition submission |
+| `isReductionOfPayment` | Boolean | Indicates whether Reduction of Fines option is selected by the defendant during petition submission |
+| `petitionSubmission` | Based64 | Defendant submission base64 file |
 
 #### Sample Message:
 ```json
@@ -112,9 +137,17 @@ The following actions in the ATP tool will trigger the Case Action message:
     "county": "San Francisco",
     "triggerAction": "Submitted",
     "petitioner": "John Doe",
+    "petitionerFirstName": "John",
+    "petitionerLastName": "Doe",
     "petitionerPhoneNumber": "(213) 555-1212",
     "petitionerEmail": "john.doe@johndoe.com",
-    "petitionSubmittedOn": "2019-01-01T03:59:15.561Z"
+    "plea": null,
+    "isCommunityService": false,
+    "isMoreTimeToPay": false,
+    "isPaymentPlan": false,
+    "isReductionOfPayment": true,
+    "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
+    "petitionerSubmission": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
 
@@ -127,20 +160,26 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Approved`" |
-| `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
+| `petitioner` | String | Petitioner |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
+| `petitionSubmittedOn` | DatTime | Date the petition was submitted on |
 | `plea` | String | Indicates what plea the Defendant took<br>Valid values are:<ul><li>"`Guilty`"</li><li>"`No Contest`"</li></ul> |
 | `allRightsWaived` | Boolean | Indicates whether the Defendant waived all the rights |
-| `adjudicated` | Boolean | Indicates whether the ase was adjudicated or not |
-| `judgment` | String | Judgment<br>Valid value is "`Approved`" |
+| `adjudicated` | Boolean | Indicates whether the case was adjudicated or not |
+| `judgment` | String | Judgment<br>Valid values are:<ul><li>"`Approved`"</li><li>"`Rejected`"</li></ul> |
 | `judgmentBy` | String | Judgment By |
 | `judgmentByRole` | String | Judgment By Role<br>Valid values are:<ul><li>"`Court Clerk`"</li><li>"`Judicial Officer`"</li></ul> |
 | `judgmentDate` | DateTime | Date the judgment was made on |
 | `reducedAmountAccept` | Boolean | Indicates whether Reduction of Fines is accepted |
 | `reducedAmountDeny` | Boolean | Indicates whether Reduction of Fines is denied |
-| `totalDueAmount` | Number | Total Amount Due by the Defendant  |
+| `totalDueAmount` | Number | Total Amount Due by the Defendant |
 | `finalReducedAmount` | Number | Final Reduced Amount |
-| `recommendedReducedAmountPayByDate` | DateTime | ATP Tool recommended Date by when the Defendant has<br>to pay the reduced amount |
+| `amountOfReduction` | Double | Amount of Reduction |
+| `recommendedReducedAmountPayByDate` | DateTime | ATP Tool recommended Date by when the Defendant<br>has to pay the reduced amount |
 | `reducedAmountPayByDate` | DateTime | Date by when the Defendant has to pay the reduced amount |
+| `expressFindingsComments` | String | Express Findings made when the calculated/recommended amount in increased by the judicial officer |
+| `additionalComments` | String | Additional Comments |
 | `paymentPlanAccept` | Boolean | Indicates whether Payment Plan is accepted |
 | `paymentPlanDeny` | Boolean | Indicates whether Payment Plan is denied |
 | `finalMonthlyPaymentAmount` | Number | Final Monthly Payment Amount |
@@ -152,7 +191,7 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `communityServiceAccept` | Boolean | Indicates whether Community Service is accepted |
 | `communityServiceDeny` | Boolean | Indicates whether Community Service is denied |
 | `judgeOrderedCommunityServiceHours` | Number | Number of Community Service Hours Judge ordered |
-| `judgeOrderedCommunityServiceDueDate` | DateTime | Due Date by which the defendant has<br>to complete the Community Service Hours |
+| `judgeOrderedCommunityServiceDueDate` | DateTime | Due Date by which the defendant has to complete<br>the Community Service Hours |
 
 #### Sample Message:
 ```json
@@ -162,20 +201,26 @@ The following actions in the ATP tool will trigger the Case Action message:
     "citationNumber": "C19037936",
     "county": "San Francisco",
     "triggerAction": "Approved",
+    "petitioner": "John Doe",
+    "petitionerFirstName": "John",
+    "petitionerLastName": "Doe"
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
     "plea": "Guilty",
     "allRightsWaived": true,
     "adjudicated": false,
     "judgment": "Approved",
-    "judgmentBy": "John Doe",
-    "judgmentByRole": "County Clerk",
+    "judgmentBy": "Chris Smith",
+    "judgmentByRole": "Judicial Officer",
     "judgmentDate": "2019-01-01T03:59:15.561Z",
     "reducedAmountAccept": true,
     "reducedAmountDeny": null,
-    "totalDueAmount": 1345,
-    "finalReducedAmount": 269.00,
+    "totalDueAmount": 234,
+    "finalReducedAmount": 117,
+    "amountOfReduction": 117,
     "recommendedReducedAmountPayByDate": "2019-05-31T03:59:15.561Z",
     "reducedAmountPayByDate": "2019-05-31T03:59:15.561Z",
+    "expressFindingsComments": null,
+    "additionalComments": null,
     "paymentPlanAccept": null,
     "paymentPlanDeny": null,
     "finalMonthlyPaymentAmount": null,
@@ -200,6 +245,9 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Rejected`" |
+| `petitioner` | String | Petitioner |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
 | `judgment` | String | Judgment<br>Valid value is "`Rejected`" |
 | `judgmentBy` | String | Judgment By |
@@ -216,10 +264,13 @@ The following actions in the ATP tool will trigger the Case Action message:
     "citationNumber": "C19037936",
     "county": "San Francisco",
     "triggerAction": "Rejected",
+    "petitioner": "John Doe",
+    "petitionerFirstName": "John",
+    "petitionerLastName": "Doe"
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
     "judgment": "Rejected",
-    "judgmentBy": "John Doe",
-    "judgmentByRole": "County Clerk",
+    "judgmentBy": "Chris Smith",
+    "judgmentByRole": "Judicial Officer",
     "judgmentDate": "2019-01-01T03:59:15.561Z",
     "denialReason": "Petition is denied by Judicial Officer",
     "rejectionDate": "2019-01-01T03:59:15.561Z"
@@ -234,6 +285,9 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Order Served`" |
+| `petitioner` | String | Petitioner |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
 | `orderServedBy` | String | Order Served By |
 | `orderServedStatus` | Boolean | Indicates whether the Order was served or not |
@@ -248,6 +302,9 @@ The following actions in the ATP tool will trigger the Case Action message:
     "citationNumber": "C19037936",
     "county": "San Francisco",
     "triggerAction": "Order Served",
+    "petitioner": "John Doe",
+    "petitionerFirstName": "John",
+    "petitionerLastName": "Doe"
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
     "orderServedBy": "John Doe",
     "orderServedStatus": true,
@@ -264,6 +321,8 @@ The following actions in the ATP tool will trigger the Case Action message:
 | `caseNumber` | String | Case Number |
 | `citationNumber` | String | Citation Number |
 | `county` | String | County |
+| `petitionerFirstName` | String | Petitioner firstname |
+| `petitionerLastName` | String | Petitioner lastname|
 | `triggerAction` | String | Action that triggered the message<br>Valid value is "`Vacated`" |
 | `petitioner` | String | Petitioner |
 | `petitionSubmittedOn` | DateTime | Date the petition was submitted on |
@@ -278,6 +337,8 @@ The following actions in the ATP tool will trigger the Case Action message:
     "caseNumber": "INF-19-C19037936",
     "citationNumber": "C19037936",
     "county": "San Francisco",
+    "petitionerFirstName": "John",
+    "petitionerLastName": "Doe"
     "triggerAction": "Vacated",
     "petitioner": "John Doe",
     "petitionSubmittedOn": "2019-01-01T03:59:15.561Z",
