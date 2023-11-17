@@ -11,18 +11,23 @@ We have some sample projects to get you started in these formats:
 * [Dotnet Framework 4.7.2](DotnetFramework/README.md)
 * [Dotnet Core 3.1](DotnetCore/README.md)
 * [Dotnet 6](Dotnet6/README.md)
+* [Dotnet 7](Dotnet7/README.md)
 * [NodeJS with JavaScript](NodeJS-JavaScript/README.md)
 * [NodeJS with TypeScript](NodeJS-TypeScript/README.md)
 
 ### Configuration Settings
-You will need to replace configuration settings provided to you by the JCC Project Manager:
+You will need to replace configuration settings provided to you by the JCC Project Manager if you connect to a Topic:
 * TenantId
 * ClientId
 * ClientSecret
 * ServiceBusNamespace
 * TopicName
 * SubscriptionName
-
+You will need to replace configuration settings provided to you by the JCC Project Manager if you connect to a Queue:
+* ServiceBusNamespace
+* QueueName
+* SharedAccessKey
+* SharedAccessKeyName
 ---
 ## Case Action
 
