@@ -1,11 +1,11 @@
 # Azure Service Bus .NET 7 sample to read data from an Azure Service Bus Queue
 
-This solution will provide sample console application to access a Service Bus entity (a Topic) using Azure Named Key Credential and read messages from the entity (a Topic).
+This solution will provide sample console application to access a Service Bus entity (a Queue) using Azure Named Key Credential and read messages from the entity (a Queue).
 
 
 ## Setup
 
-The project has two relevant Nuget packages.
+The project has one relevant Nuget package.
 1. Azure.Messaging.ServiceBus - contains methods for interacting with Service Bus 
 
 Install these packages using the Package Manager.
